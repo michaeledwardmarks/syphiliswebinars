@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ISS Webinar Series — International Syphilis Symposium</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --teal:       #2ab8c4;
+      --teal-dark:  #1a8a94;
+      --teal-light: #e6f9fb;
+      --navy:       #0b1e2d;
+      --navy-mid:   #122636;
+      --white:      #ffffff;
+      --off-white:  #f7f9fa;
+      --text:       #1c2b35;
+      --muted:      #5a7383;
+      --border:     #d4e4ea;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      background: var(--white);
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      height: 68px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      text-decoration: none;
+    }
+
+    .nav-logo img {
+      height: 42px;
+      object-fit: contain;
+    }
+
+    .nav-logo-text {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--teal);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1.3;
+    }
+
+    .nav-links { display: flex; gap: 0.2rem; }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--teal);
+      background: rgba(42,184,196,0.1);
+    }
+
+    /* anchor offset for sticky nav */
+    .anchor-target {
+      display: block;
+      height: 68px;
+      margin-top: -68px;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: linear-gradient(150deg, var(--navy) 0%, var(--navy-mid) 55%, #0e2f40 100%);
+      padding: 7rem 2rem 6.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 65% 55% at 50% 38%, rgba(42,184,196,0.09) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-logo {
+      width: 200px;
+      margin-bottom: 2.25rem;
+      filter: drop-shadow(0 6px 28px rgba(42,184,196,0.28));
+      position: relative;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.13;
+      position: relative;
+    }
+
+    .hero h1 span { color: var(--teal); }
+
+    .hero-rule {
+      width: 56px;
+      height: 3px;
+      background: var(--teal);
+      margin: 1.75rem auto;
+      border-radius: 2px;
+    }
+
+    .hero-desc {
+      max-width: 660px;
+      margin: 0 auto 2.75rem;
+      color: rgba(255,255,255,0.72);
+      font-size: 1.08rem;
+      line-height: 1.85;
+      position: relative;
+    }
+
+    .btn-cta {
+      display: inline-block;
+      background: var(--teal);
+      color: var(--navy);
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.9rem 2.1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.22s;
+      letter-spacing: 0.02em;
+      position: relative;
+    }
+
+    .btn-cta:hover {
+      background: #23adb8;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(42,184,196,0.38);
+    }
+
+    /* ─── SHARED SECTION STYLES ─── */
+    .section-wrap {
+      padding: 5.5rem 2rem;
+    }
+
+    .section-wrap.alt {
+      background: var(--off-white);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-inner {
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    .section-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--teal-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.85rem, 3.5vw, 2.55rem);
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.18;
+      margin-bottom: 1rem;
+    }
+
+    .section-rule {
+      width: 44px;
+      height: 3px;
+      background: var(--teal);
+      border-radius: 2px;
+      margin-bottom: 1.6rem;
+    }
+
+    .section-lead {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.85;
+      max-width: 740px;
+    }
+
+    /* ─── TEAM ─── */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(205px, 1fr));
+      gap: 1.75rem;
+      margin-top: 2.75rem;
+    }
+
+    .team-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: transform 0.24s, box-shadow 0.24s;
+    }
+
+    .team-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.09);
+    }
+
+    .team-photo {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: linear-gradient(135deg, #cde8ed 0%, #aad4de 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      color: var(--teal-dark);
+    }
+
+    .team-photo svg { width: 54px; height: 54px; opacity: 0.4; }
+    .team-photo .photo-label { font-size: 0.7rem; font-weight: 500; opacity: 0.55; letter-spacing: 0.06em; }
+
+    .team-body { padding: 1.3rem 1.4rem 1.5rem; }
+
+    .team-name {
+      font-weight: 600;
+      font-size: 1.01rem;
+      color: var(--navy);
+      margin-bottom: 0.2rem;
+    }
+
+    .team-role {
+      font-size: 0.73rem;
+      font-weight: 600;
+      color: var(--teal-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.8rem;
+    }
+
+    .team-bio {
+      font-size: 0.86rem;
+      color: var(--muted);
+      line-height: 1.72;
+    }
+
+    /* ─── ORGANISER NOTE ─── */
+    .org-note {
+      background: var(--teal-light);
+      border: 1px solid rgba(42,184,196,0.28);
+      border-radius: 10px;
+      padding: 0.9rem 1.15rem;
+      font-size: 0.83rem;
+      color: var(--teal-dark);
+      margin-bottom: 2rem;
+      display: flex;
+      gap: 0.55rem;
+      align-items: flex-start;
+      line-height: 1.6;
+    }
+
+    /* ─── WEBINAR CARDS ─── */
+    .webinar-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.8rem;
+      margin-bottom: 1.25rem;
+      display: grid;
+      grid-template-columns: 76px 1fr auto;
+      gap: 1.5rem;
+      align-items: center;
+      transition: border-color 0.22s, box-shadow 0.22s;
+    }
+
+    .webinar-card:hover {
+      border-color: var(--teal);
+      box-shadow: 0 6px 26px rgba(42,184,196,0.11);
+    }
+
+    .date-block {
+      background: var(--navy);
+      border-radius: 10px;
+      text-align: center;
+      padding: 0.8rem 0.4rem;
+      color: var(--white);
+    }
+
+    .date-block .d-month { font-size: 0.67rem; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: var(--teal); }
+    .date-block .d-day   { font-family: 'Cormorant Garamond', serif; font-size: 2.1rem; font-weight: 700; line-height: 1; }
+    .date-block .d-year  { font-size: 0.67rem; color: rgba(255,255,255,0.48); }
+
+    .webinar-info h3 { font-weight: 600; font-size: 1.03rem; color: var(--navy); margin-bottom: 0.4rem; }
+
+    .webinar-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-bottom: 0.55rem;
+    }
+
+    .webinar-meta span { font-size: 0.8rem; color: var(--muted); }
+
+    .webinar-info p { font-size: 0.875rem; color: var(--muted); line-height: 1.67; }
+
+    .btn-zoom {
+      display: inline-block;
+      background: var(--teal);
+      color: var(--navy);
+      font-weight: 600;
+      font-size: 0.85rem;
+      padding: 0.72rem 1.45rem;
+      border-radius: 8px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .btn-zoom:hover {
+      background: #23adb8;
+      box-shadow: 0 4px 16px rgba(42,184,196,0.32);
+    }
+
+    /* ─── RECORDING CARDS ─── */
+    .rec-card {
+      display: flex;
+      align-items: center;
+      gap: 1.3rem;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.4rem 1.75rem;
+      margin-bottom: 1rem;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.22s, box-shadow 0.22s, transform 0.22s;
+    }
+
+    .rec-card:hover {
+      border-color: var(--teal);
+      box-shadow: 0 6px 26px rgba(42,184,196,0.11);
+      transform: translateX(5px);
+    }
+
+    .play-btn {
+      width: 50px;
+      height: 50px;
+      background: var(--navy);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.2s;
+    }
+
+    .rec-card:hover .play-btn { background: var(--teal); }
+
+    .play-btn svg { width: 19px; height: 19px; fill: white; margin-left: 3px; }
+
+    .rec-info { flex: 1; }
+    .rec-info h3 { font-weight: 600; font-size: 0.99rem; color: var(--navy); margin-bottom: 0.22rem; }
+    .rec-info .rec-meta { font-size: 0.8rem; color: var(--muted); }
+
+    .watch-tag {
+      background: var(--teal-light);
+      color: var(--teal-dark);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.28rem 0.8rem;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    /* ─── FOOTNOTE ─── */
+    .footnote {
+      font-size: 0.87rem;
+      color: var(--muted);
+      line-height: 1.78;
+      margin-top: 1.75rem;
+    }
+
+    .footnote a { color: var(--teal); font-weight: 500; text-decoration: none; }
+    .footnote a:hover { text-decoration: underline; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.42);
+      text-align: center;
+      padding: 2.25rem 1rem;
+      font-size: 0.8rem;
+    }
+
+    footer a { color: var(--teal); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ─── MOBILE ─── */
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .nav-logo-text { display: none; }
+      .nav-links a { padding: 0.4rem 0.65rem; font-size: 0.8rem; }
+      .webinar-card { grid-template-columns: 1fr; }
+      .date-block { display: flex; gap: 0.75rem; align-items: center; justify-content: center; padding: 0.6rem 1rem; width: fit-content; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════
+     STICKY NAVIGATION
+════════════════════════════════════════ -->
+<nav>
+  <a class="nav-logo" href="#about">
+    <img src="iss-logo.png" alt="ISS Webinar Series logo" onerror="this.style.display='none'"/>
+    <div class="nav-logo-text">ISS<br>Webinar Series</div>
+  </a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#team">Team</a>
+    <a href="#register">Register</a>
+    <a href="#recordings">Recordings</a>
+  </div>
+</nav>
+
+
+<!-- ════════════════════════════════════════
+     SECTION 1 — ABOUT (HERO)
+════════════════════════════════════════ -->
+<span class="anchor-target" id="about"></span>
+<section class="hero">
+  <img src="iss-logo.png" class="hero-logo" alt="ISS Webinar Series"
+       onerror="this.style.display='none'"/>
+  <h1>The <span>International Syphilis</span><br>Symposium Webinar Series</h1>
+  <div class="hero-rule"></div>
+  <p class="hero-desc">
+    A quarterly webinar series focused on global syphilis control. The series brings together clinicians, academics, public health agencies, and community organisations to highlight ongoing research and public health interventions focused on syphilis.
+  </p>
+  <a class="btn-cta" href="#register">Register for Upcoming Webinars</a>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     SECTION 2 — TEAM
+════════════════════════════════════════ -->
+<span class="anchor-target" id="team"></span>
+<section class="section-wrap">
+  <div class="section-inner">
+    <p class="section-eyebrow">Organising Committee</p>
+    <h2 class="section-title">Meet the Team</h2>
+    <div class="section-rule"></div>
+    <p class="section-lead">The ISS Webinar Series is organised and led by a dedicated group of international experts in syphilis research, clinical medicine, and global public health.</p>
+
+    <div class="team-grid">
+
+      <!-- ── Team Member 1 — replace placeholder with real photo src and bio ── -->
+      <div class="team-card">
+        <div class="team-photo">
+          <!-- To add a real photo replace the svg block below with:
+               <img src="photo-name.jpg" alt="Dr First Last" style="width:100%;height:100%;object-fit:cover;"> -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+          </svg>
+          <span class="photo-label">Photo</span>
+        </div>
+        <div class="team-body">
+          <p class="team-name">Dr. [First Last]</p>
+          <p class="team-role">Series Lead / Chair</p>
+          <p class="team-bio">Brief bio — institution, specialty, research focus, and key contributions to syphilis epidemiology and control.</p>
+        </div>
+      </div>
+
+      <!-- ── Team Member 2 ── -->
+      <div class="team-card">
+        <div class="team-photo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+          </svg>
+          <span class="photo-label">Photo</span>
+        </div>
+        <div class="team-body">
+          <p class="team-name">Dr. [First Last]</p>
+          <p class="team-role">Co-Chair</p>
+          <p class="team-bio">Brief bio — institution, specialty, research focus, and contributions to syphilis clinical research and public health.</p>
+        </div>
+      </div>
+
+      <!-- ── Team Member 3 ── -->
+      <div class="team-card">
+        <div class="team-photo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+          </svg>
+          <span class="photo-label">Photo</span>
+        </div>
+        <div class="team-body">
+          <p class="team-name">Dr. [First Last]</p>
+          <p class="team-role">Scientific Committee</p>
+          <p class="team-bio">Brief bio — institution, specialty, research focus, and contributions to global STI surveillance and congenital syphilis prevention.</p>
+        </div>
+      </div>
+
+      <!-- ── Team Member 4 ── -->
+      <div class="team-card">
+        <div class="team-photo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+          </svg>
+          <span class="photo-label">Photo</span>
+        </div>
+        <div class="team-body">
+          <p class="team-name">[First Last]</p>
+          <p class="team-role">Programme Coordinator</p>
+          <p class="team-bio">Brief bio — institution, role, and experience coordinating international webinar programmes and global health initiatives.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     SECTION 3 — REGISTRATION
+     🔧 UPDATE THIS SECTION EACH QUARTER
+════════════════════════════════════════ -->
+<span class="anchor-target" id="register"></span>
+<section class="section-wrap alt">
+  <div class="section-inner">
+    <p class="section-eyebrow">Upcoming Sessions</p>
+    <h2 class="section-title">Register for a Webinar</h2>
+    <div class="section-rule"></div>
+    <p class="section-lead" style="margin-bottom:2rem;">All webinars are free to attend and delivered via Zoom. Register below to receive your personalised joining link by email.</p>
+
+    <div class="org-note">
+      <span>📋</span>
+      <span><strong>For organisers:</strong> Each quarter, update the date block, title, time, speaker name, description, and Zoom link in the card below. Duplicate the card if there are multiple upcoming sessions.</span>
+    </div>
+
+    <!-- ══ WEBINAR CARD — EDIT BELOW EACH QUARTER ══ -->
+    <div class="webinar-card">
+      <div class="date-block">
+        <div class="d-month">Month</div>
+        <div class="d-day">00</div>
+        <div class="d-year">2025</div>
+      </div>
+      <div class="webinar-info">
+        <h3>[Webinar Title — e.g. "Congenital Syphilis: A Global Crisis"]</h3>
+        <div class="webinar-meta">
+          <span>🕐 [Time — e.g. 14:00 UTC]</span>
+          <span>🎤 [Speaker Name, Institution]</span>
+        </div>
+        <p>[A 1–2 sentence description of the topic and what attendees will gain from attending.]</p>
+      </div>
+      <a href="#" class="btn-zoom">Register on Zoom →</a>
+    </div>
+    <!-- ══ END OF WEBINAR CARD ══ -->
+
+    <p class="footnote">
+      A free Zoom account is required to register. A confirmation email with your joining link will be sent automatically. Sessions are recorded and made available on the <a href="#recordings">Recordings page</a> within one week of each event.
+    </p>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     SECTION 4 — RECORDINGS
+     🔧 ADD NEW ENTRIES HERE EACH QUARTER
+════════════════════════════════════════ -->
+<span class="anchor-target" id="recordings"></span>
+<section class="section-wrap">
+  <div class="section-inner">
+    <p class="section-eyebrow">Past Sessions</p>
+    <h2 class="section-title">Webinar Recordings</h2>
+    <div class="section-rule"></div>
+    <p class="section-lead" style="margin-bottom:2rem;">Missed a session? All previous ISS Webinar Series recordings are available to watch below.</p>
+
+    <div class="org-note">
+      <span>📋</span>
+      <span><strong>For organisers:</strong> After each webinar, add a new recording card below — newest at the top. Update the title, date, speaker, duration, and replace the <code>href="#"</code> with the YouTube or Zoom recording link.</span>
+    </div>
+
+    <!-- ══ RECORDING CARD — ADD NEW ONES AT THE TOP ══ -->
+    <a href="#" class="rec-card">
+      <div class="play-btn">
+        <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+      </div>
+      <div class="rec-info">
+        <h3>[Webinar Title — e.g. "Syphilis Screening in Pregnancy: Latest Evidence"]</h3>
+        <div class="rec-meta">[Month Year] &nbsp;·&nbsp; [Speaker Name] &nbsp;·&nbsp; [e.g. 58 min]</div>
+      </div>
+      <span class="watch-tag">Watch</span>
+    </a>
+    <!-- ══ END OF RECORDING CARD ══ -->
+
+    <p class="footnote">
+      Recordings are usually posted within one week of each live session. To be notified of new recordings, <a href="#register">register for an upcoming webinar</a>.
+    </p>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════ -->
+<footer>
+  <p>© 2025 The International Syphilis Symposium Webinar Series &nbsp;|&nbsp; <a href="mailto:info@example.com">Contact Us</a></p>
+</footer>
+
+</body>
+</html>
