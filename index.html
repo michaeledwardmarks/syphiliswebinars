@@ -233,8 +233,7 @@
 
     .team-photo {
       width: 100%;
-      height: 240px;
-      overflow: hidden;
+      aspect-ratio: 1 / 1;
       background: linear-gradient(135deg, #cde8ed 0%, #aad4de 100%);
       display: flex;
       flex-direction: column;
@@ -242,15 +241,6 @@
       justify-content: center;
       gap: 0.5rem;
       color: var(--teal-dark);
-      flex-shrink: 0;
-    }
-
-    .team-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      display: block;
     }
 
     .team-photo svg { width: 54px; height: 54px; opacity: 0.4; }
@@ -472,7 +462,7 @@
   <p class="hero-desc">
     A quarterly webinar series focused on global syphilis control. The series brings together clinicians, academics, public health agencies, and community organisations to highlight ongoing research and public health interventions focused on syphilis.
   </p>
-  <a class="btn-cta" href="#register">Register for Upcoming Webinars</a>
+  <a id="hero-register-btn" class="btn-cta" href="#" target="_blank" rel="noopener">Register for Upcoming Webinars</a>
 </section>
 
 
@@ -489,34 +479,31 @@
 
     <div class="team-grid">
 
-      <!-- ── Team Member 1 ── -->
+      <!-- ── Team Member 1 — replace placeholder with real photo src and bio ── -->
       <div class="team-card">
-        <div class="team-photo">
-          <img src="michaelmarks.png" alt="Professor Michael Marks">
+          <img src="michaelmarks.png" alt="Professor Michael Marks" style="width:100%;height:100%;object-fit:cover;">
         </div>
         <div class="team-body">
           <p class="team-name">Prof. Michael Marks</p>
           <p class="team-role">Scientific Committee</p>
-          <p class="team-bio">London School of Hygiene & Tropical Medicine — Michael is a clinician and epidemiologist focused on the control of syphilis in high and low income settings.</p>
+          <p class="team-bio">London School of Hygiene & Tropical Medicine - Michael is a clinician and epidemiologist focused on the control of syphilis in high and low income settings.</p>
         </div>
       </div>
 
       <!-- ── Team Member 2 ── -->
-      <div class="team-card">
-        <div class="team-photo">
-          <img src="kellyhawley.png" alt="Dr Kelly Hawley">
+     <div class="team-card">
+          <img src="kellyhawley.png" alt="Dr Kelly Hawley" style="width:100%;height:100%;object-fit:cover;">
         </div>
         <div class="team-body">
           <p class="team-name">Dr. Kelly Hawley</p>
           <p class="team-role">Scientific Committee</p>
-          <p class="team-bio">University of Connecticut — Kelly is a scientist focused on understanding Treponema pallidum basic biology and the development of vaccines.</p>
+          <p class="team-bio">University of Connecticut — Kelly is a scientist focused on understand Treponema pallidum basic biology and the development of vaccines.</p>
         </div>
       </div>
 
       <!-- ── Team Member 3 ── -->
-      <div class="team-card">
-        <div class="team-photo">
-          <img src="nicolelieberman.png" alt="Dr Nicole Lieberman">
+       <div class="team-card">
+          <img src="nicolelieberman.png" alt="Dr Nicole Lieberman" style="width:100%;height:100%;object-fit:cover;">
         </div>
         <div class="team-body">
           <p class="team-name">Dr. Nicole Lieberman</p>
@@ -526,14 +513,13 @@
       </div>
 
       <!-- ── Team Member 4 ── -->
-      <div class="team-card">
-        <div class="team-photo">
-          <img src="lisafrigati.png" alt="Dr Lisa Frigati">
+       <div class="team-card">
+          <img src="lisafrigati.png" alt="Dr Lisa Frigati Hawley" style="width:100%;height:100%;object-fit:cover;">
         </div>
         <div class="team-body">
           <p class="team-name">Dr. Lisa Frigati</p>
           <p class="team-role">Scientific Committee</p>
-          <p class="team-bio">Stellenbosch University — Lisa is a paediatric infectious diseases clinician focused on improving management of congenital syphilis in low resource settings.</p>
+          <p class="team-bio">Stellenbosch University - Lisa is a paediateic infectious diseases clinician focused on improving management of congenital syphilis in low resource settings.</p>
         </div>
       </div>
 
@@ -569,7 +555,7 @@
         </div>
         <p>This webinar will discuss the planned STOP trial of syphilis treatment in pregnancy and recent studies on syphilis transmission in Argentina. </p>
       </div>
-      <a href="https://events.zoom.us/e/view/up2yuZLDRG--UyRPi1300w" class="btn-zoom">Register on Zoom →</a>
+      <a id="zoom-link" href="https://events.zoom.us/e/view/up2yuZLDRG--UyRPi1300w" class="btn-zoom" target="_blank" rel="noopener">Register on Zoom →</a>
     </div>
     <!-- ══ END OF WEBINAR CARD ══ -->
 
@@ -616,4 +602,12 @@
      FOOTER
 ════════════════════════════════════════ -->
 <footer>
-  <p>© 2025 The International Syphilis Symposium Webinar Series &nbsp;|&nbsp; <a href="/cdn-cgi/l/email-protection#a9c0c7cfc6e9ccd1c8c4d9c5cc87cac6c4">Contact
+  <p>© 2025 The International Syphilis Symposium Webinar Series &nbsp;|&nbsp; <a href="/cdn-cgi/l/email-protection#a9c0c7cfc6e9ccd1c8c4d9c5cc87cac6c4">Contact</a></p>
+</footer>
+
+<script>
+  const zoomLink = document.getElementById("zoom-link").href;
+  document.getElementById("hero-register-btn").href = zoomLink;
+</script>
+</body>
+</html>
