@@ -696,15 +696,35 @@
     <p class="section-lead" style="margin-bottom:2rem;">Missed a session? All previous ISS Webinar Series recordings are available to watch below.</p>
 
     <!-- ══ RECORDING CARD — ADD NEW ONES AT THE TOP ══ -->
-  <div class="rec-card" style="opacity:0.6;cursor:default;pointer-events:none;">
-  <div class="play-btn" style="background:#ccc;">
-    <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="white"/></svg>
+  <div style="background: var(--white); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; margin-bottom: 1rem;">
+  <div style="display: flex; align-items: stretch;">
+
+    <button onclick="expandVideo('toggle-mar26','vid-mar26')"
+      id="toggle-mar26"
+      aria-label="Play webinar recording"
+      style="flex-shrink:0; width:140px; border:none; padding:0; cursor:pointer; background:#0b1e2d; position:relative; display:block;">
+      <img src="https://img.youtube.com/vi/pzyfb7cC2JA/hqdefault.jpg" alt="March 2026 webinar thumbnail"
+        style="width:100%; height:100%; object-fit:cover; opacity:0.72; display:block;">
+      <div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.35rem;">
+        <div class="play-btn">
+          <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21" fill="white"/></svg>
+        </div>
+        <span style="font-size:0.68rem; font-weight:600; color:white; letter-spacing:0.02em;">Watch</span>
+      </div>
+    </button>
+
+    <div style="flex:1; padding:1.3rem 1.5rem; display:flex; flex-direction:column; justify-content:center; gap:0.5rem;">
+      <span class="watch-tag" style="width:fit-content;">March 2026</span>
+      <h3 style="font-weight:600; font-size:1.01rem; color:var(--navy); margin:0;">Trials of Syphilis Treatment in Pregnancy &amp; Epidemiology in Argentina</h3>
+      <div class="rec-meta">🎤 Michael Marks · Luciana Garcia</div>
+      <p style="font-size:0.855rem; color:var(--muted); line-height:1.68; margin:0;">
+        <strong style="color:var(--navy); font-weight:500;">Michael Marks:</strong> Optimising penicillin treatment in pregnancy — the STOP Trial<br>
+        <strong style="color:var(--navy); font-weight:500;">Luciana Garcia:</strong> Recent research findings on syphilis in children and adolescents in Buenos Aires, Argentina
+      </p>
+    </div>
+
   </div>
-  <div class="rec-info">
-    <h3>Recording Coming Soon</h3>
-    <div class="rec-meta">Our first webinar recording will appear here shortly after the live session.</div>
-  </div>
-  <span class="watch-tag" style="background:#eee;color:#999;">Coming Soon</span>
+  <div id="vid-mar26" style="display:none; position:relative; padding-bottom:56.25%; height:0; overflow:hidden;"></div>
 </div>
     <!-- ══ END OF RECORDING CARD ══ -->
 
@@ -739,6 +759,13 @@
 <script>
   const zoomLink = document.getElementById("zoom-link").href;
   document.getElementById("hero-register-btn").href = zoomLink;
+<script>
+  function expandVideo(toggleId, vidId) {
+    document.getElementById(toggleId).style.display = 'none';
+    var wrap = document.getElementById(vidId);
+    wrap.style.display = 'block';
+    wrap.innerHTML = '<iframe src="https://www.youtube.com/embed/pzyfb7cC2JA?si=lltkOMnThIM3u-zs&autoplay=1" title="March 2026 ISS Webinar" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;"></iframe>';
+  }
 </script>
 </body>
 </html>
